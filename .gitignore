@@ -1,2 +1,9 @@
-/youtubeswipetoseek.iml
-/build
+/.gradle/
+/.idea/
+/build/
+/gradle/
+/gradlew
+/gradlew.bat
+/local.properties
+/xposed_youtube-swipe-to-seek.iml
+*.apk
