@@ -286,7 +286,7 @@ public class YoutubeHooker implements IXposedHookLoadPackage, IXposedHookInitPac
 
                                 hookDataHolder.infoToast.cancel();
                                 currentPos = -1;
-                                if (DEBUG) log(TAG + "swipe stopped");
+                                if (DEBUG) log(TAG + ": swipe stopped");
                             }
 
                             @Override
