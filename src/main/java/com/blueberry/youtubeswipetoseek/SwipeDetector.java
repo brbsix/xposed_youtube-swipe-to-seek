@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.ViewParent;
 
 /**
  * Created by hieptran on 24/05/2016.
@@ -27,11 +28,14 @@ public class SwipeDetector {
     }
 
 
-    void onEvent(MotionEvent motionEvent) {
+    void onEvent(MotionEvent motionEvent, ViewParent mParent) {
         int action = motionEvent.getAction();
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                if (mParent != null) {
+                    mParent.requestDisallowInterceptTouchEvent(true);
+                }
                 if (isCanceled) return;
                 oriX = (int) motionEvent.getX();
                 oriY = (int) motionEvent.getY();
@@ -49,6 +53,9 @@ public class SwipeDetector {
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                if (mParent != null) {
+                    mParent.requestDisallowInterceptTouchEvent(true);
+                }
                 if (isCanceled) return;
                 int currentX = (int) motionEvent.getX();
                 int currentY = (int) motionEvent.getY();

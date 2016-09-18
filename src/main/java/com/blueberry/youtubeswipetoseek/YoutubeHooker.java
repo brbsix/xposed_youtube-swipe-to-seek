@@ -17,6 +17,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
@@ -369,8 +370,8 @@ public class YoutubeHooker implements IXposedHookLoadPackage, IXposedHookInitPac
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                         hookDataHolder.isTouchEventDispatched = (boolean) param.getResult();
                         MotionEvent motionEvent = (MotionEvent) param.args[0];
-
-                        hookDataHolder.youtubeVideoSwipeDetector.onEvent(motionEvent);
+                        ViewParent mParent = hookDataHolder.youtubePlayerView.getParent();
+                        hookDataHolder.youtubeVideoSwipeDetector.onEvent(motionEvent, mParent);
                     }
                 });
     }
